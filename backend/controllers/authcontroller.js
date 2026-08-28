@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import genToken from "../utils/token.js";
 import { sendOtpMail } from "../utils/mail.js"
 
+const isRender = process.env.FRONTEND_URL?.includes("onrender");
 
 {/*signup*/ }
 export const signUp = async (req, res) => {
@@ -47,6 +48,7 @@ export const signUp = async (req, res) => {
             sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000,
             httpOnly: true,
+            domain: isRender ? ".onrender.com" : undefined,
         })
 
         console.log("signup successfull");
@@ -79,6 +81,7 @@ export const signIn = async (req, res) => {
             sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000,
             httpOnly: true,
+            domain: isRender ? ".onrender.com" : undefined,
         })
 
         return res.status(200).json(user)
@@ -95,6 +98,7 @@ export const logOut = async (req, res) => {
         res.clearCookie("token", {
             secure: true,
             sameSite: "none",
+            domain: isRender ? ".onrender.com" : undefined,
         })
         return res.status(200).json({ message: "Logged out successfully" });
     } catch (error) {
@@ -185,6 +189,7 @@ export const googleAuth = async (req, res) => {
             sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000,
             httpOnly: true,
+            domain: isRender ? ".onrender.com" : undefined,
         })
 
         console.log("google auth successfull");
