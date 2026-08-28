@@ -32,6 +32,7 @@ function Nav() {
       const result = await axios.get(`${serverUrl}/api/auth/logout`,
         { withCredentials: true })
       dispatch(setUserData(null))
+      localStorage.removeItem("token")
     } catch (error) {
       console.log("logout error", error);
     }

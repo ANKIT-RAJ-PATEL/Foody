@@ -37,6 +37,7 @@ function Signup() {
       }, { withCredentials: true });
       console.log("signup successful");
       dispatch(setUserData(result.data))
+      localStorage.setItem("token", result.data.token)
       setError("");
       setLoading(false);
     } catch (error) {
@@ -61,6 +62,7 @@ function Signup() {
         role,
       },{withCredentials:true});
        dispatch(setUserData(data))
+       localStorage.setItem("token", data.token)
       
       setError("")
       setLoading(false);

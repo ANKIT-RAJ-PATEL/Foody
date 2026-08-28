@@ -43,16 +43,22 @@ export const signUp = async (req, res) => {
         })
 
         const token = await genToken(user._id);
+        // res.cookie("token", token, {
+        //     secure: true,
+        //     sameSite: "none",
+        //     maxAge: 7 * 24 * 60 * 60 * 1000,
+        //     httpOnly: true,
+        //     domain: isRender ? ".onrender.com" : undefined,
+        // })
         res.cookie("token", token, {
             secure: true,
             sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000,
             httpOnly: true,
-            domain: isRender ? ".onrender.com" : undefined,
         })
 
         console.log("signup successfull");
-        return res.status(201).json(user)
+        return res.status(201).json({ ...user.toObject(), token })
 
     } catch (error) {
         console.log("signin error:", error);
@@ -76,15 +82,21 @@ export const signIn = async (req, res) => {
 
 
         const token = await genToken(user._id);
+        // res.cookie("token", token, {
+        //     secure: true,
+        //     sameSite: "none",
+        //     maxAge: 7 * 24 * 60 * 60 * 1000,
+        //     httpOnly: true,
+        //     domain: isRender ? ".onrender.com" : undefined,
+        // })
         res.cookie("token", token, {
             secure: true,
             sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000,
             httpOnly: true,
-            domain: isRender ? ".onrender.com" : undefined,
         })
 
-        return res.status(200).json(user)
+        return res.status(200).json({ ...user.toObject(), token })
 
     } catch (error) {
         console.log("signin error:", error);
@@ -184,16 +196,22 @@ export const googleAuth = async (req, res) => {
         }
 
         const token = await genToken(user._id);
+        // res.cookie("token", token, {
+        //     secure: true,
+        //     sameSite: "none",
+        //     maxAge: 7 * 24 * 60 * 60 * 1000,
+        //     httpOnly: true,
+        //     domain: isRender ? ".onrender.com" : undefined,
+        // })
         res.cookie("token", token, {
             secure: true,
             sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000,
             httpOnly: true,
-            domain: isRender ? ".onrender.com" : undefined,
         })
 
         console.log("google auth successfull");
-        return res.status(200).json(user)
+        return res.status(200).json({ ...user.toObject(), token })
 
     } catch (error) {
         console.log("google auth error:", error);

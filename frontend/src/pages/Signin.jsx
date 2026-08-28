@@ -33,10 +33,11 @@ function Signin() {
   const handleSignin=async () => {
     setLoading(true);
     try {
-      const result=await axios.post(`${serverUrl}/api/auth/signin`,{
+       const result=await axios.post(`${serverUrl}/api/auth/signin`,{
         email,password
       },{withCredentials:true});
        dispatch(setUserData(result.data))
+       localStorage.setItem("token", result.data.token)
     
       setError("")
       setLoading(false);
@@ -60,6 +61,7 @@ function Signin() {
         { withCredentials: true }
       );
        dispatch(setUserData(data))
+       localStorage.setItem("token", data.token)
     
       setError("")
       setLoading(false);
