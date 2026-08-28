@@ -3,15 +3,6 @@ import bcrypt from "bcryptjs";
 import genToken from "../utils/token.js";
 import { sendOtpMail } from "../utils/mail.js"
 
-const isProduction = process.env.NODE_ENV === "production" || process.env.FRONTEND_URL?.includes("onrender");
-
-const cookieOptions = {
-    secure: isProduction,
-    sameSite: isProduction ? "none" : "lax",
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    httpOnly: true,
-    ...(isProduction && { domain: ".onrender.com" }),
-};
 
 {/*signup*/ }
 export const signUp = async (req, res) => {
@@ -51,7 +42,12 @@ export const signUp = async (req, res) => {
         })
 
         const token = await genToken(user._id);
-        res.cookie("token", token, cookieOptions)
+        res.cookie("token", token, {
+            secure: true,
+            sameSite: "none",
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            httpOnly: true,
+        })
 
         console.log("signup successfull");
         return res.status(201).json(user)
@@ -78,7 +74,12 @@ export const signIn = async (req, res) => {
 
 
         const token = await genToken(user._id);
-        res.cookie("token", token, cookieOptions)
+        res.cookie("token", token, {
+            secure: true,
+            sameSite: "none",
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            httpOnly: true,
+        })
 
         return res.status(200).json(user)
 
@@ -92,9 +93,8 @@ export const signIn = async (req, res) => {
 export const logOut = async (req, res) => {
     try {
         res.clearCookie("token", {
-            secure: isProduction,
-            sameSite: isProduction ? "none" : "lax",
-            ...(isProduction && { domain: ".onrender.com" }),
+            secure: true,
+            sameSite: "none",
         })
         return res.status(200).json({ message: "Logged out successfully" });
     } catch (error) {
@@ -180,7 +180,12 @@ export const googleAuth = async (req, res) => {
         }
 
         const token = await genToken(user._id);
-        res.cookie("token", token, cookieOptions)
+        res.cookie("token", token, {
+            secure: true,
+            sameSite: "none",
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            httpOnly: true,
+        })
 
         console.log("google auth successfull");
         return res.status(200).json(user)
