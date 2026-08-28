@@ -47,13 +47,13 @@ function Signup() {
   }
 
   const handleGoogleSignup=async () => {
-    setLoading(true);
     if(!mobile){
-      return setError("Please enter mobile number")
+      return setError("Please enter mobile number before signing up with Google")
     }
+    setLoading(true);
     const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth,provider);
     try {
+      const result = await signInWithPopup(auth,provider);
       const {data} =await axios.post(`${serverUrl}/api/auth/googleauth`,{
         fullname: result.user.displayName,
         email: result.user.email,
@@ -67,7 +67,7 @@ function Signup() {
 
     } catch (error) {
       setLoading(false);
-      setError(error.response.data.message);
+      setError(error?.response?.data?.message || "Google signup failed");
     }
   }
 
