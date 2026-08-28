@@ -1,6 +1,16 @@
-# Foody - Food Delivery Platform
+<div align="center">
+  <img src="frontend/src/assets/logo.png" alt="Foody Logo" width="150"/>
+  <h1>Foody - Food Delivery Platform</h1>
+  <p>A full-stack food delivery application built with the MERN stack, featuring real-time order tracking, AI-powered chatbot, and role-based dashboards.</p>
+</div>
 
-A full-stack food delivery application built with the MERN stack, featuring real-time order tracking, AI-powered chatbot, and role-based dashboards.
+---
+
+## Home Page
+
+<p align="center">
+  <img src="frontend/src/assets/home.png" alt="Foody Home" width="800"/>
+</p>
 
 ## Tech Stack
 
@@ -11,6 +21,12 @@ A full-stack food delivery application built with the MERN stack, featuring real
 **AI:** Groq API (Compound Mini), Google Gemini 2.0 Flash
 
 ## Features
+
+<p align="center">
+  <img src="frontend/src/assets/shop.png" alt="Restaurant" width="250"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="frontend/src/assets/scooter.png" alt="Delivery" width="250"/>
+</p>
 
 ### Customer
 - Browse restaurants and food items by city
