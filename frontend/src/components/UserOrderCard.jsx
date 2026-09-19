@@ -76,7 +76,7 @@ function UserOrderCard({ data }) {
             <div className='flex space-x-4 overflow-x-auto pb-2 scrollbar-hide'>
               {shopOrder.shopOrderItems.map((item, index) => (
                 <div key={index} className='flex-shrink-0 w-44 border-2 border-orange-200 rounded-xl p-3 bg-white shadow-md hover:shadow-lg transition-shadow'>
-                  <img src={item.item.image} alt={item.item.name}
+                  <img src={item.item?.image} alt={item.item?.name}
                     className='w-full h-28 object-cover rounded-lg' />
                   <p className='text-sm font-bold mt-2 text-gray-900 truncate'>{item.name}</p>
                   <p className='text-xs text-gray-600 flex items-center mt-1'>
@@ -86,10 +86,10 @@ function UserOrderCard({ data }) {
                   {shopOrder.status == "delivered" &&
                     <div className='flex gap-1 mt-2'>
                       {[1,2,3,4,5].map((star,idx)=>(
-                        <button key={idx} className={`text-xl cursor-pointer transition-colors ${seletctedRating[item.item._id]>=star?
+                        <button key={idx} className={`text-xl cursor-pointer transition-colors ${seletctedRating[item.item?._id]>=star?
                           "text-yellow-400":"text-gray-300"} hover:scale-125`}
-                          onClick={()=>handleRating(item.item._id,star)}>
-                          {seletctedRating[item.item._id]>=star ? <BsStarFill /> : <BsStar />}
+                          onClick={()=>handleRating(item.item?._id,star)}>
+                          {seletctedRating[item.item?._id]>=star ? <BsStarFill /> : <BsStar />}
                         </button>
                       ))}
                     </div>}
