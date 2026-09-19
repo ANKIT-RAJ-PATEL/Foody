@@ -60,7 +60,7 @@ function OwnerOrderCard({ data }) {
         <div className='flex space-x-4 overflow-x-auto pb-2 scrollbar-hide'>
           {data.shopOrders.shopOrderItems.map((item, index) => (
             <div key={index} className='flex-shrink-0 w-44 border-2 border-purple-200 rounded-xl p-3 bg-white shadow-md hover:shadow-lg transition-shadow'>
-              <img src={item.item.image} alt={item.item.name}
+              <img src={item.item?.image} alt={item.item?.name}
                 className='w-full h-28 object-cover rounded-lg' />
               <p className='text-sm font-bold mt-2 text-gray-900 truncate'>{item.name}</p>
               <p className='text-xs text-gray-600 flex items-center mt-1'>
@@ -78,7 +78,8 @@ function OwnerOrderCard({ data }) {
             </span>
           </div>
 
-          <select className='rounded-xl border-2 px-4 py-2 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#ff4d2d]/50 border-[#ff4d2d] text-[#ff4d2d] cursor-pointer bg-white hover:bg-orange-50 transition-colors shadow-md'
+          <select className='rounded-xl border-2 px-4 py-2 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#ff4d2d]/50 border-[#ff4d2d] text-[#ff4d2d] 
+            cursor-pointer bg-white hover:bg-orange-50 transition-colors shadow-md'
             onChange={(e) => handleUpdateStatus(data._id, data.shopOrders.shop._id, e.target.value)}>
 
             <option value="change">Update Status</option>
