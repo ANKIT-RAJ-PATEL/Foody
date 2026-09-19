@@ -60,7 +60,7 @@ function OwnerOrderCard({ data }) {
         <div className='flex space-x-4 overflow-x-auto pb-2 scrollbar-hide'>
           {data.shopOrders.shopOrderItems.map((item, index) => (
             <div key={index} className='flex-shrink-0 w-44 border-2 border-purple-200 rounded-xl p-3 bg-white shadow-md hover:shadow-lg transition-shadow'>
-              <img src={item.item?.image} alt={item.item?.name}
+              <img src={item?.item?.image} alt={item?.item?.name}
                 className='w-full h-28 object-cover rounded-lg' />
               <p className='text-sm font-bold mt-2 text-gray-900 truncate'>{item.name}</p>
               <p className='text-xs text-gray-600 flex items-center mt-1'>
