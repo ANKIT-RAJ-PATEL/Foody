@@ -553,9 +553,12 @@ export const sendDeliveryOTP = async (req, res) => {
     try {
         const { orderId, shopOrderId } = req.body;
         const order = await Order.findById(orderId).populate("user");
+        if (!order ) {
+            return res.status(404).json({ message: "Enter valid order" })
+        }
         const shopOrder = order.shopOrders.id(shopOrderId);
         if (!order || !shopOrder) {
-            return res.status(404).json({ message: "Enter valid order or shop order id" })
+            return res.status(404).json({ message: "Enter valid shop order id" })
         }
         const otp = Math.floor(1000 + Math.random() * 9000).toString();
         shopOrder.deliveryOtp = otp;
